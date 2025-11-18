@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Training Feedback</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/style.css" />
+  <style>
+    .sessions-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; margin-top: 8px; }
+    .session-card {
+      display: block; background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 22px 24px; text-decoration: none;
+      color: var(--text); transition: border-color 0.15s; position: relative; overflow: hidden;
+    }
+    .session-card:hover { border-color: var(--border-hover); }
+    .session-card .card-icon { font-size: 24px; margin-bottom: 12px; display: block; }
+    .session-card .card-title { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+    .session-card .card-sub { font-size: 13px; color: var(--text-muted); margin-bottom: 14px; line-height: 1.5; }
+    .session-card .card-meta { display: flex; gap: 8px; flex-wrap: wrap; }
+    .tag { font-family: var(--mono); font-size: 10px; padding: 3px 8px; border-radius: 4px; border: 1px solid var(--border); color: var(--text-dim); }
+    .card-arrow { position: absolute; top: 22px; right: 20px; color: var(--text-dim); font-size: 18px; transition: transform 0.15s, color 0.15s; }
+    .session-card:hover .card-arrow { transform: translateX(3px); color: var(--text-muted); }
+    .card-ai { border-left: 3px solid rgba(0,212,170,0.4); }
+    .card-ai:hover { border-left-color: rgba(0,212,170,0.8); }
+    .card-git { border-left: 3px solid rgba(79,158,255,0.4); }
+    .card-git:hover { border-left-color: rgba(79,158,255,0.8); }
+    .add-card { background: transparent; border: 1px dashed var(--border); border-radius: var(--radius); padding: 22px 24px; color: var(--text-dim); font-size: 13px; line-height: 1.6; }
+    .add-card strong { display: block; margin-bottom: 4px; font-size: 14px; color: var(--text-muted); }
+    .divider { height: 1px; background: var(--border); margin: 40px 0; }
+    .how-it-works { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; }
+    .how-step { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; }
+    .how-step .step-num { font-family: var(--mono); font-size: 11px; color: var(--text-dim); margin-bottom: 6px; }
+    .how-step .step-text { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
+  </style>
+</head>
+<body>
+<header class="header">
+  <div class="header-left">
+    <span class="header-logo">// feedback</span>
+    <span class="header-sep">·</span>
+    <span class="header-title">training sessions</span>
+  </div>
+</header>
+<main class="container">
+  <div class="hero">
+    <p class="hero-eyebrow" style="color:var(--text-muted)">post-session surveys</p>
+    <h1>Which session did you attend?</h1>
+    <p>Pick a session below. Takes about 3 minutes. Responses go straight to a shared spreadsheet — no account needed.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-header"><span class="section-label">Available surveys</span></div>
+    <div class="sessions-grid">
+
+      <a href="sessions/ai-engineering.html" class="session-card card-ai">
+        <span class="card-arrow">→</span>
+        <span class="card-icon">🤖</span>
+        <div class="card-title">AI-Assisted Engineering</div>
+        <div class="card-sub">Prompt engineering, AI workflows &amp; productivity tools</div>
+        <div class="card-meta"><span class="tag">workshop</span><span class="tag">11 questions</span></div>
+      </a>
+
+      <a href="sessions/git-best-practices.html" class="session-card card-git">
+        <span class="card-arrow">→</span>
+        <span class="card-icon">🌿</span>
+        <div class="card-title">Git Best Practices</div>
+        <div class="card-sub">Commit messages, branching strategy &amp; conflict resolution</div>
+        <div class="card-meta"><span class="tag">workshop</span><span class="tag">11 questions</span></div>
+      </a>
+
+      <!-- ── TO ADD A NEW SESSION ───────────────────────────── 
+        1. Copy sessions/ai-engineering.html → sessions/topic.html
+        2. Update the session name, questions, and accent color at the top of that file
+        3. Add a new card here pointing to it
+      -->
+      <div class="add-card">
+        <strong>＋ Add a new session</strong>
+        Duplicate one of the session files in /sessions, update the content, and add a card here.
+      </div>
+
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section">
+    <div class="section-header"><span class="section-label">How it works</span></div>
+    <div class="how-it-works">
+      <div class="how-step"><div class="step-num">01</div><div class="step-text">Share the link after each session</div></div>
+      <div class="how-step"><div class="step-num">02</div><div class="step-text">Attendee picks their session and fills the form</div></div>
+      <div class="how-step"><div class="step-num">03</div><div class="step-text">Response lands in Google Sheets instantly</div></div>
+      <div class="how-step"><div class="step-num">04</div><div class="step-text">Each session gets its own tab in the sheet</div></div>
+    </div>
+  </div>
+</main>
+</body>
+</html>
