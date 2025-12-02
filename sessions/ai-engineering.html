@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Feedback — AI-Assisted Engineering</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/style.css" />
+  <script src="../config.js"></script>
+  <script src="../assets/form.js"></script>
+  <style>
+    /* Session accent — change these 3 values to retheme any session */
+    :root {
+      --accent:        #00d4aa;
+      --accent-dim:    rgba(0,212,170,0.10);
+      --accent-border: rgba(0,212,170,0.35);
+    }
+    .submit-btn { background: var(--accent-dim); border-color: var(--accent-border); color: var(--accent); }
+    .submit-btn:hover { background: rgba(0,212,170,0.18); }
+    .success-banner { background: var(--accent-dim); border: 1px solid var(--accent-border); }
+    .success-banner h3 { color: var(--accent); }
+    .success-banner p, .success-banner a { color: var(--text-muted); }
+    .hero-eyebrow { color: var(--accent); }
+    .cb-item:has(input:checked) { border-color: var(--accent-border); }
+    input[type="checkbox"] { accent-color: var(--accent); }
+  </style>
+</head>
+<body>
+<header class="header">
+  <div class="header-left">
+    <span class="header-logo"><a href="../index.html">// feedback</a></span>
+    <span class="header-sep">·</span>
+    <span class="header-title">AI-Assisted Engineering</span>
+  </div>
+</header>
+<main class="container">
+  <div class="hero">
+    <p class="hero-eyebrow">post-session survey</p>
+    <div class="format-badge">🤖 Workshop · Prompt Engineering, AI Workflows &amp; Productivity</div>
+    <h1>How did this session land?</h1>
+    <p>About 3 minutes. All fields optional. Responses go directly to the team spreadsheet.</p>
+  </div>
+
+  <form id="main-form" novalidate aria-label="Session feedback form">
+    <input type="hidden" name="session" value="AI-Assisted Engineering" />
+
+    <div class="section">
+      <div class="section-header"><span class="section-label">Overall experience</span></div>
+
+      <div class="q-card">
+        <div class="q-label"><span class="q-num">01</span> How would you rate this session overall?</div>
+        <div class="rating-wrap">
+          <div class="rating-row" id="r-overall"></div>
+          <div class="rating-labels"><span>Not useful</span><span>Extremely useful</span></div>
+        </div>
+        <input type="hidden" name="overall" id="v-overall" />
+      </div>
+
+      <div class="q-card">
+        <div class="q-label"><span class="q-num">02</span> The pace of the session was</div>
+        <div class="pill-row" data-hidden="v-pace">
+          <div class="pill" data-val="Too slow" onclick="selectPill(this,true,'#00d4aa','rgba(0,212,170,0.10)','rgba(0,212,170,0.35)')">Too slow</div>
+          <div class="pill" data-val="About right" onclick="selectPill(this,true,'#00d4aa','rgba(0,212,170,0.10)','rgba(0,212,170,0.35)')">About right</div>
+          <div class="pill" data-val="Too fast" onclick="selectPill(this,true,'#00d4aa','rgba(0,212,170,0.10)','rgba(0,212,170,0.35)')">Too fast</div>
+        </div>
+        <input type="hidden" name="pace" id="v-pace" />
+      </div>
+
+      <div class="q-card">
+        <div class="q-label"><span class="q-num">03</span> How well did the session match your current skill level?</div>
+        <div class="rating-wrap">
+          <div class="rating-row" id="r-level"></div>
+          <div class="rating-labels"><span>Way too basic</span><span>Way too advanced</span></div>
+        </div>
+        <input type="hidden" name="skillLevel" id="v-level" />
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-header"><span class="section-label">Content effectiveness</span></div>
+
+      <div class="q-card">
+        <div class="q-label"><span class="q-num">04</span> Which topics were most valuable? <span style="font-size:12px;color:var(--text-dim)">(select all that apply)</span></div>
+        <div class="cb-grid">
+          <label class="cb-item"><input type="checkbox" name="topics" value="How LLMs work"><span>How LLMs work</span></label>
+          <label class="cb-item"><input type="checkbox" name="topics" value="Prompt anatomy (COCO)"><span>Prompt anatomy (COCO)</span></label>
+          <label class="cb-item"><input type="checkbox" name="topics" value="Master Prompt Framework"><span>Master Prompt Framework</span></label>
+          <label class="cb-item"><input type="checkbox" name="topics" value="Role-specific prompt examples"><span>Role-specific examples</span></label>
+          <label class="cb-item"><input type="checkbox" name="topics" value="ChatGPT to Claude workflow"><span>ChatGPT → Claude workflow</span></label>
+          <label class="cb-item"><input type="checkbox" name="topics" value="AI tool landscape comparison"><span>AI tool landscape</span></label>
+          <label class="cb-item"><input type="checkbox" name="topics" value="Which tool to use guide"><span>Which tool to use guide</span></label>
+          <label class="cb-item"><input type="checkbox" name="topics" value="Practical hands-on exercises"><span>Practical exercises</span></label>
+          <label class="cb-item"><input type="checkbox" name="topics" value="AI usage guidelines and security"><span>AI usage &amp; security</span></label>
+          <label class="cb-item"><input type="checkbox" name="topics" value="Advanced prompting tips"><span>Advanced prompting tips</span></label>
+          <label class="cb-item"><input type="checkbox" name="topics" value="AI adoption framework"><span>AI adoption framework</span></label>
+          <label class="cb-item"><input type="checkbox" name="topics" value="Productivity stats and impact"><span>Productivity stats</span></label>
+        </div>
+      </div>
+
+      <div class="q-card">
+        <div class="q-label"><span class="q-num">05</span> After this session, how confident are you in writing effective prompts?</div>
+        <div class="rating-wrap">
+          <div class="rating-row" id="r-confidence"></div>
+          <div class="rating-labels"><span>Not confident</span><span>Very confident</span></div>
+        </div>
+        <input type="hidden" name="promptConfidence" id="v-confidence" />
+      </div>
+
+      <div class="q-card">
+        <div class="q-label"><span class="q-num">06</span> How likely are you to use AI tools differently in your daily work?</div>
+        <div class="rating-wrap">
+          <div class="rating-row" id="r-change"></div>
+          <div class="rating-labels"><span>Unlikely</span><span>Very likely</span></div>
+        </div>
+        <input type="hidden" name="likelyToChange" id="v-change" />
+      </div>
+
+      <div class="q-card">
+        <div class="q-label"><span class="q-num">07</span> The real-world examples and exercises were relevant to my role</div>
+        <div class="rating-wrap">
+          <div class="rating-row" id="r-examples"></div>
+          <div class="rating-labels"><span>Strongly disagree</span><span>Strongly agree</span></div>
+        </div>
+        <input type="hidden" name="examplesRelevant" id="v-examples" />
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-header"><span class="section-label">What's next</span></div>
+
+      <div class="q-card">
+        <div class="q-label"><span class="q-num">08</span> Topics you'd like in a follow-up session <span style="font-size:12px;color:var(--text-dim)">(select all that apply)</span></div>
+        <div class="cb-grid">
+          <label class="cb-item"><input type="checkbox" name="followUp" value="Claude Code and Cursor deep dive"><span>Claude Code / Cursor deep dive</span></label>
+          <label class="cb-item"><input type="checkbox" name="followUp" value="AI workflow automation n8n"><span>AI workflow automation (n8n)</span></label>
+          <label class="cb-item"><input type="checkbox" name="followUp" value="AI-assisted code review"><span>AI-assisted code review</span></label>
+          <label class="cb-item"><input type="checkbox" name="followUp" value="Building an internal prompt library"><span>Building a prompt library</span></label>
+          <label class="cb-item"><input type="checkbox" name="followUp" value="Role-specific AI playbooks"><span>Role-specific AI playbooks</span></label>
+          <label class="cb-item"><input type="checkbox" name="followUp" value="AI security and data governance"><span>AI security &amp; governance</span></label>
+          <label class="cb-item"><input type="checkbox" name="followUp" value="Figma to code with AI"><span>Figma to code with AI</span></label>
+          <label class="cb-item"><input type="checkbox" name="followUp" value="AI for testing and QA"><span>AI for testing &amp; QA</span></label>
+          <label class="cb-item"><input type="checkbox" name="followUp" value="AI for data analysis and BI"><span>AI for data analysis &amp; BI</span></label>
+          <label class="cb-item"><input type="checkbox" name="followUp" value="Evaluating and measuring AI output"><span>Evaluating AI output quality</span></label>
+        </div>
+      </div>
+
+      <div class="q-card">
+        <div class="q-label"><span class="q-num">09</span> Which AI tools are you already using or plan to start? <span style="font-size:12px;color:var(--text-dim)">(select all)</span></div>
+        <div class="pill-row" data-hidden="v-tools">
+          <div class="pill" data-val="ChatGPT" onclick="selectPill(this,false,'#00d4aa','rgba(0,212,170,0.10)','rgba(0,212,170,0.35)')">ChatGPT</div>
+          <div class="pill" data-val="Claude" onclick="selectPill(this,false,'#00d4aa','rgba(0,212,170,0.10)','rgba(0,212,170,0.35)')">Claude</div>
+          <div class="pill" data-val="Gemini" onclick="selectPill(this,false,'#00d4aa','rgba(0,212,170,0.10)','rgba(0,212,170,0.35)')">Gemini</div>
+          <div class="pill" data-val="Cursor" onclick="selectPill(this,false,'#00d4aa','rgba(0,212,170,0.10)','rgba(0,212,170,0.35)')">Cursor</div>
+          <div class="pill" data-val="GitHub Copilot" onclick="selectPill(this,false,'#00d4aa','rgba(0,212,170,0.10)','rgba(0,212,170,0.35)')">GitHub Copilot</div>
+          <div class="pill" data-val="Perplexity" onclick="selectPill(this,false,'#00d4aa','rgba(0,212,170,0.10)','rgba(0,212,170,0.35)')">Perplexity</div>
+          <div class="pill" data-val="Figma AI" onclick="selectPill(this,false,'#00d4aa','rgba(0,212,170,0.10)','rgba(0,212,170,0.35)')">Figma AI</div>
+          <div class="pill" data-val="NotebookLM" onclick="selectPill(this,false,'#00d4aa','rgba(0,212,170,0.10)','rgba(0,212,170,0.35)')">NotebookLM</div>
+          <div class="pill" data-val="Claude Code" onclick="selectPill(this,false,'#00d4aa','rgba(0,212,170,0.10)','rgba(0,212,170,0.35)')">Claude Code</div>
+          <div class="pill" data-val="n8n AI" onclick="selectPill(this,false,'#00d4aa','rgba(0,212,170,0.10)','rgba(0,212,170,0.35)')">n8n AI</div>
+          <div class="pill" data-val="Gamma" onclick="selectPill(this,false,'#00d4aa','rgba(0,212,170,0.10)','rgba(0,212,170,0.35)')">Gamma</div>
+          <div class="pill" data-val="Lovable" onclick="selectPill(this,false,'#00d4aa','rgba(0,212,170,0.10)','rgba(0,212,170,0.35)')">Lovable</div>
+        </div>
+        <input type="hidden" name="toolsUsing" id="v-tools" />
+      </div>
+
+      <div class="q-card">
+        <div class="q-label"><span class="q-num">10</span> What's one thing you'll try in your work this week?</div>
+        <textarea name="tryThisWeek" placeholder="e.g. I'll rewrite my code review prompts using the Master Prompt Framework..."></textarea>
+      </div>
+
+      <div class="q-card">
+        <div class="q-label"><span class="q-num">11</span> What's missing or could be improved?</div>
+        <textarea name="improvements" placeholder="Topics you wanted more of, things that didn't land, or general suggestions..."></textarea>
+      </div>
+    </div>
+
+    <div class="submit-wrap">
+      <button type="button" class="submit-btn" id="submit-btn" onclick="doSubmit()">Submit feedback →</button>
+      <div class="error-msg" id="err-msg"></div>
+    </div>
+    <div class="success-banner" id="success-banner">
+      <h3>Response recorded ✓</h3>
+      <p>Thanks — your feedback is in the spreadsheet. <a href="../index.html">← Back to sessions</a></p>
+    </div>
+  </form>
+</main>
+
+<script>
+  buildRatings([
+    { rowId:'r-overall',    hiddenId:'v-overall',    accent:'#00d4aa', accentDim:'rgba(0,212,170,0.10)', accentBorder:'rgba(0,212,170,0.35)' },
+    { rowId:'r-level',      hiddenId:'v-level',      accent:'#00d4aa', accentDim:'rgba(0,212,170,0.10)', accentBorder:'rgba(0,212,170,0.35)' },
+    { rowId:'r-confidence', hiddenId:'v-confidence', accent:'#00d4aa', accentDim:'rgba(0,212,170,0.10)', accentBorder:'rgba(0,212,170,0.35)' },
+    { rowId:'r-change',     hiddenId:'v-change',     accent:'#00d4aa', accentDim:'rgba(0,212,170,0.10)', accentBorder:'rgba(0,212,170,0.35)' },
+    { rowId:'r-examples',   hiddenId:'v-examples',   accent:'#00d4aa', accentDim:'rgba(0,212,170,0.10)', accentBorder:'rgba(0,212,170,0.35)' },
+  ]);
+  function doSubmit() {
+    submitFeedback(
+      document.getElementById('main-form'),
+      document.getElementById('submit-btn'),
+      document.getElementById('err-msg'),
+      document.getElementById('success-banner')
+    );
+  }
+</script>
+</body>
+</html>
