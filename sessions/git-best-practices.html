@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Feedback — Git Best Practices</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/style.css" />
+  <script src="../config.js"></script>
+  <script src="../assets/form.js"></script>
+  <style>
+    :root {
+      --accent:        #4f9eff;
+      --accent-dim:    rgba(79,158,255,0.10);
+      --accent-border: rgba(79,158,255,0.35);
+    }
+    .submit-btn { background: var(--accent-dim); border-color: var(--accent-border); color: var(--accent); }
+    .submit-btn:hover { background: rgba(79,158,255,0.18); }
+    .success-banner { background: var(--accent-dim); border: 1px solid var(--accent-border); }
+    .success-banner h3 { color: var(--accent); }
+    .success-banner p, .success-banner a { color: var(--text-muted); }
+    .hero-eyebrow { color: var(--accent); }
+    .cb-item:has(input:checked) { border-color: var(--accent-border); }
+    input[type="checkbox"] { accent-color: var(--accent); }
+  </style>
+</head>
+<body>
+<header class="header">
+  <div class="header-left">
+    <span class="header-logo"><a href="../index.html">// feedback</a></span>
+    <span class="header-sep">·</span>
+    <span class="header-title">Git Best Practices</span>
+  </div>
+</header>
+<main class="container">
+  <div class="hero">
+    <p class="hero-eyebrow">post-session survey</p>
+    <div class="format-badge">🌿 Workshop · Commits, Branching &amp; Conflict Resolution</div>
+    <h1>How did this session land?</h1>
+    <p>About 3 minutes. All fields optional. Responses go directly to the team spreadsheet.</p>
+  </div>
+
+  <form id="main-form" novalidate aria-label="Session feedback form">
+    <input type="hidden" name="session" value="Git Best Practices" />
+
+    <div class="section">
+      <div class="section-header"><span class="section-label">Overall experience</span></div>
+
+      <div class="q-card">
+        <div class="q-label"><span class="q-num">01</span> How would you rate this session overall?</div>
+        <div class="rating-wrap">
+          <div class="rating-row" id="r-overall"></div>
+          <div class="rating-labels"><span>Not useful</span><span>Extremely useful</span></div>
+        </div>
+        <input type="hidden" name="overall" id="v-overall" />
+      </div>
+
+      <div class="q-card">
+        <div class="q-label"><span class="q-num">02</span> The pace of the session was</div>
+        <div class="pill-row" data-hidden="v-pace">
+          <div class="pill" data-val="Too slow" onclick="selectPill(this,true,'#4f9eff','rgba(79,158,255,0.10)','rgba(79,158,255,0.35)')">Too slow</div>
+          <div class="pill" data-val="About right" onclick="selectPill(this,true,'#4f9eff','rgba(79,158,255,0.10)','rgba(79,158,255,0.35)')">About right</div>
+          <div class="pill" data-val="Too fast" onclick="selectPill(this,true,'#4f9eff','rgba(79,158,255,0.10)','rgba(79,158,255,0.35)')">Too fast</div>
+        </div>
+        <input type="hidden" name="pace" id="v-pace" />
+      </div>
+
+      <div class="q-card">
+        <div class="q-label"><span class="q-num">03</span> How comfortable are you with Git after this session?</div>
+        <div class="rating-wrap">
+          <div class="rating-row" id="r-comfort"></div>
+          <div class="rating-labels"><span>Still confused</span><span>Fully confident</span></div>
+        </div>
+        <input type="hidden" name="comfortLevel" id="v-comfort" />
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-header"><span class="section-label">Content effectiveness</span></div>
+
+      <div class="q-card">
+        <div class="q-label"><span class="q-num">04</span> Which topics were most valuable? <span style="font-size:12px;color:var(--text-dim)">(select all that apply)</span></div>
+        <div class="cb-grid">
+          <label class="cb-item"><input type="checkbox" name="topics" value="Why Git matters"><span>Why Git matters</span></label>
+          <label class="cb-item"><input type="checkbox" name="topics" value="Commit message format"><span>Commit message format</span></label>
+          <label class="cb-item"><input type="checkbox" name="topics" value="Jira ID automation payoff"><span>Jira ID automation</span></label>
+          <label class="cb-item"><input type="checkbox" name="topics" value="Semantic versioning"><span>Semantic versioning</span></label>
+          <label class="cb-item"><input type="checkbox" name="topics" value="Git tags and releases"><span>Git tags &amp; releases</span></label>
+          <label class="cb-item"><input type="checkbox" name="topics" value="main dev feature branching"><span>main / dev / feature branching</span></label>
+          <label class="cb-item"><input type="checkbox" name="topics" value="Hotfix strategy"><span>Hotfix strategy</span></label>
+          <label class="cb-item"><input type="checkbox" name="topics" value="Branch flow diagram"><span>Branch flow diagram</span></label>
+          <label class="cb-item"><input type="checkbox" name="topics" value="Conflict resolution strategies"><span>Conflict resolution</span></label>
+          <label class="cb-item"><input type="checkbox" name="topics" value="Conflict prevention checklist"><span>Conflict prevention checklist</span></label>
+          <label class="cb-item"><input type="checkbox" name="topics" value="Hands-on sandbox exercise"><span>Hands-on sandbox exercise</span></label>
+        </div>
+      </div>
+
+      <div class="q-card">
+        <div class="q-label"><span class="q-num">05</span> How likely are you to follow the commit format <code>type(scope): JIRA-ID desc</code> from now on?</div>
+        <div class="rating-wrap">
+          <div class="rating-row" id="r-commit"></div>
+          <div class="rating-labels"><span>Unlikely</span><span>Definitely will</span></div>
+        </div>
+        <input type="hidden" name="commitAdoption" id="v-commit" />
+      </div>
+
+      <div class="q-card">
+        <div class="q-label"><span class="q-num">06</span> Before this session, did your team follow a branching strategy?</div>
+        <div class="pill-row" data-hidden="v-branch">
+          <div class="pill" data-val="No strategy at all" onclick="selectPill(this,true,'#4f9eff','rgba(79,158,255,0.10)','rgba(79,158,255,0.35)')">No strategy at all</div>
+          <div class="pill" data-val="Some informal rules" onclick="selectPill(this,true,'#4f9eff','rgba(79,158,255,0.10)','rgba(79,158,255,0.35)')">Some informal rules</div>
+          <div class="pill" data-val="Yes, a defined strategy" onclick="selectPill(this,true,'#4f9eff','rgba(79,158,255,0.10)','rgba(79,158,255,0.35)')">Yes, a defined one</div>
+        </div>
+        <input type="hidden" name="branchingBefore" id="v-branch" />
+      </div>
+
+      <div class="q-card">
+        <div class="q-label"><span class="q-num">07</span> The conflict resolution strategies (feature flags, Strangler Fig, daily rebases) are practical for our team</div>
+        <div class="rating-wrap">
+          <div class="rating-row" id="r-conflict"></div>
+          <div class="rating-labels"><span>Not practical</span><span>Very practical</span></div>
+        </div>
+        <input type="hidden" name="conflictPractical" id="v-conflict" />
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-header"><span class="section-label">What's next</span></div>
+
+      <div class="q-card">
+        <div class="q-label"><span class="q-num">08</span> Git topics you'd like to go deeper on <span style="font-size:12px;color:var(--text-dim)">(select all that apply)</span></div>
+        <div class="cb-grid">
+          <label class="cb-item"><input type="checkbox" name="followUp" value="Git hooks and pre-commit checks"><span>Git hooks &amp; pre-commit</span></label>
+          <label class="cb-item"><input type="checkbox" name="followUp" value="CI/CD pipeline integration"><span>CI/CD pipeline integration</span></label>
+          <label class="cb-item"><input type="checkbox" name="followUp" value="Automated release notes"><span>Automated release notes</span></label>
+          <label class="cb-item"><input type="checkbox" name="followUp" value="Rebasing vs merging in depth"><span>Rebasing vs merging</span></label>
+          <label class="cb-item"><input type="checkbox" name="followUp" value="PR review best practices"><span>PR review best practices</span></label>
+          <label class="cb-item"><input type="checkbox" name="followUp" value="Monorepo strategies"><span>Monorepo strategies</span></label>
+          <label class="cb-item"><input type="checkbox" name="followUp" value="git bisect and debugging"><span>git bisect &amp; debugging</span></label>
+          <label class="cb-item"><input type="checkbox" name="followUp" value="Branch protection rules"><span>Branch protection rules</span></label>
+          <label class="cb-item"><input type="checkbox" name="followUp" value="Delivery metrics from Git and Jira"><span>Delivery metrics (Git+Jira)</span></label>
+          <label class="cb-item"><input type="checkbox" name="followUp" value="Team-wide Git audit and cleanup"><span>Team-wide Git audit</span></label>
+        </div>
+      </div>
+
+      <div class="q-card">
+        <div class="q-label"><span class="q-num">09</span> Which practice will be hardest to adopt on your team?</div>
+        <div class="pill-row" data-hidden="v-hardest">
+          <div class="pill" data-val="Consistent commit format" onclick="selectPill(this,true,'#4f9eff','rgba(79,158,255,0.10)','rgba(79,158,255,0.35)')">Consistent commit format</div>
+          <div class="pill" data-val="Daily rebasing" onclick="selectPill(this,true,'#4f9eff','rgba(79,158,255,0.10)','rgba(79,158,255,0.35)')">Daily rebasing</div>
+          <div class="pill" data-val="Small PRs under 400 lines" onclick="selectPill(this,true,'#4f9eff','rgba(79,158,255,0.10)','rgba(79,158,255,0.35)')">Small PRs</div>
+          <div class="pill" data-val="Deleting branches after merge" onclick="selectPill(this,true,'#4f9eff','rgba(79,158,255,0.10)','rgba(79,158,255,0.35)')">Deleting branches after merge</div>
+          <div class="pill" data-val="Always including Jira IDs" onclick="selectPill(this,true,'#4f9eff','rgba(79,158,255,0.10)','rgba(79,158,255,0.35)')">Always including Jira IDs</div>
+          <div class="pill" data-val="Never committing to main" onclick="selectPill(this,true,'#4f9eff','rgba(79,158,255,0.10)','rgba(79,158,255,0.35)')">Never committing to main</div>
+        </div>
+        <input type="hidden" name="hardestPractice" id="v-hardest" />
+      </div>
+
+      <div class="q-card">
+        <div class="q-label"><span class="q-num">10</span> What one change will you make to your Git workflow this week?</div>
+        <textarea name="tryThisWeek" placeholder="e.g. I'll start rebasing onto dev every morning before writing any new code..."></textarea>
+      </div>
+
+      <div class="q-card">
+        <div class="q-label"><span class="q-num">11</span> What's missing or could be improved?</div>
+        <textarea name="improvements" placeholder="Topics you wanted more of, things that didn't land, or general suggestions..."></textarea>
+      </div>
+    </div>
+
+    <div class="submit-wrap">
+      <button type="button" class="submit-btn" id="submit-btn" onclick="doSubmit()">Submit feedback →</button>
+      <div class="error-msg" id="err-msg"></div>
+    </div>
+    <div class="success-banner" id="success-banner">
+      <h3>Response recorded ✓</h3>
+      <p>Thanks — your feedback is in the spreadsheet. <a href="../index.html">← Back to sessions</a></p>
+    </div>
+  </form>
+</main>
+
+<script>
+  buildRatings([
+    { rowId:'r-overall',  hiddenId:'v-overall',  accent:'#4f9eff', accentDim:'rgba(79,158,255,0.10)', accentBorder:'rgba(79,158,255,0.35)' },
+    { rowId:'r-comfort',  hiddenId:'v-comfort',  accent:'#4f9eff', accentDim:'rgba(79,158,255,0.10)', accentBorder:'rgba(79,158,255,0.35)' },
+    { rowId:'r-commit',   hiddenId:'v-commit',   accent:'#4f9eff', accentDim:'rgba(79,158,255,0.10)', accentBorder:'rgba(79,158,255,0.35)' },
+    { rowId:'r-conflict', hiddenId:'v-conflict', accent:'#4f9eff', accentDim:'rgba(79,158,255,0.10)', accentBorder:'rgba(79,158,255,0.35)' },
+  ]);
+  function doSubmit() {
+    submitFeedback(
+      document.getElementById('main-form'),
+      document.getElementById('submit-btn'),
+      document.getElementById('err-msg'),
+      document.getElementById('success-banner')
+    );
+  }
+</script>
+</body>
+</html>
