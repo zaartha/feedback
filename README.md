@@ -7,7 +7,7 @@ Multi-session feedback system. One repo, one Google Sheet, unlimited sessions.
 ```
 /
 ├── index.html              ← Landing page (lists all sessions)
-├── config.js               ← ONLY FILE TO EDIT — no other changes needed: paste Apps Script URL here
+├── config.js               ← ONLY FILE TO EDIT: paste Apps Script URL here
 ├── Code.gs                 ← Paste into Google Apps Script
 ├── assets/
 │   ├── style.css           ← Shared styles for all pages
