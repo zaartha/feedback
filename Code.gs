@@ -102,3 +102,4 @@ function testSetup() {
   Logger.log('URL: ' + ss.getUrl());
   Logger.log('Ready — deploy as Web App and paste the URL into config.js');
 }
+
