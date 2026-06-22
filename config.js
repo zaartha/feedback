@@ -11,4 +11,4 @@
 //  5. Copy the /exec URL and paste it below
 // ─────────────────────────────────────────────
 
-window.APPS_SCRIPT_URL = 'PASTE_APPS_SCRIPT_URL_HERE';
+window.APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxwjN8oBR_5qgLJ0Hb38swSGHeUh7U61VEj5G6Y9MbttoZxoIiing0XCDg8bqKtAfOV/exec';
