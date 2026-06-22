@@ -63,6 +63,7 @@ function selectPill(el, exclusive, accent, accentDim, accentBorder) {
 }
 
 async function submitFeedback(formEl, btnEl, errEl, successEl) {
+  
   if (!window.APPS_SCRIPT_URL || window.APPS_SCRIPT_URL === 'PASTE_APPS_SCRIPT_URL_HERE') {
     errEl.textContent = 'Apps Script URL not set — open config.js and paste the deployment URL.';
     errEl.classList.add('show');
@@ -93,6 +94,7 @@ async function submitFeedback(formEl, btnEl, errEl, successEl) {
       body: JSON.stringify(data)
     });
     btnEl.style.display = 'none';
+    successEl.innerHTML = '<h3>Response recorded ✓</h3><p>Thanks for your feedback. <a href="../index.html">← Back to sessions</a></p>';
     successEl.classList.add('show');
     successEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   } catch (err) {
